@@ -11,3 +11,4 @@ export const prisma =
   });
 
 if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
+console.log("DATABASE_URL exists:", !!process.env.DATABASE_URL);
