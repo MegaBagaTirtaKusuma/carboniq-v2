@@ -1,0 +1,41 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Activity {
+  id               String    @id @default(cuid())
+  scope            String
+  category         String
+  vehicleType      String?
+  fuelType         String?
+  electricitySource String?
+  flightType       String?
+  startDate        DateTime
+  endDate          DateTime
+  quantity         Float
+  unit             String
+  emissionFactor   Float
+  emissionResult   Float
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  deletedAt        DateTime?
+
+  @@map("activities")
+}
+
+model EmissionFactor {
+  id          String   @id @default(cuid())
+  scope       String
+  category    String
+  factorType  String
+  factorValue Float
+  unit        String
+  createdAt   DateTime @default(now())
+
+  @@map("emission_factors")
+}
